@@ -1,0 +1,82 @@
+export interface BubbleCell {
+
+  id:string;
+
+  occupied:number;
+
+  energy:number;
+
+  x:number;
+
+  y:number;
+
+  z:number;
+}
+
+## Bee Signal Engine
+export class BeeSignal {
+
+  calculatePath(nodes) {
+
+      return nodes.sort(
+        (a,b)=>a.cost-b.cost
+      );
+
+  }
+
+}
+
+## Green Fuel Store
+import { create } from "zustand";
+
+export const useEnergyStore = create(
+(set)=>({
+
+ solar:80,
+
+ battery:70,
+
+ wind:45,
+
+ updateSolar:(v)=>
+   set({solar:v})
+
+}));
+
+## MQTT Service
+import mqtt from "mqtt";
+
+const client = mqtt.connect(
+ "wss://broker.emqx.io:8084/mqtt"
+);
+
+client.on("connect",()=>{
+
+ console.log("MQTT Connected");
+
+});
+
+## WebSocket
+const ws = new WebSocket(
+ "wss://server.company.com"
+);
+
+ws.onmessage = (event)=>{
+
+ console.log(event.data);
+
+};
+
+## JWT Login
+export async function login(
+ email:string,
+ password:string
+){
+
+ const result =
+ await fetch("/api/login",{
+   method:"POST"
+ });
+
+ return result.json();
+}
